@@ -63,7 +63,14 @@ function App() {
       <header>
       {paginaInicial && (
         <div>
-          <h1 data-testid="tituloJuego">Piedra, Papel o Tijera</h1>
+          <h1 className="tituloJuego" data-testid="tituloJuego">Piedra, Papel o Tijera</h1>
+          <p className='reglas'> Reglas del juego: </p>
+          <p className='reglas'> Hablamos del clásico juego de manos. </p>
+          <p className='reglas'> Pero esta vez jugarás con la computadora. </p>
+          <li className='reglas'> La piedra rompe la tijera </li>
+          <li className='reglas'> La tijera corta el papel </li>
+          <li className='reglas'> El papel envuelve a la piedra </li>
+          <p className='reglas'> El juego finaliza tras cinco rondas jugadas, o al mejor de tres. </p>
           <button type="button" id="botónComenzar" onClick={ActivarJuego}> Comenzar </button>
         </div>
       )}
