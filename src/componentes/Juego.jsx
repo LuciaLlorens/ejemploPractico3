@@ -1,8 +1,8 @@
 import "../App.css";
 import { useState, useEffect } from "react";
 
-function Juego({nombre, setMensajeNombreError, setMensajeOpcionError, setMostrarInterfaz, 
-    jugadaUsuario,  setJugadaComputadora,
+function Juego({nombre, setMensajeNombreError, setMensajeOpcionError, setMostrarInterfaz, setSaludar,setInput,
+    jugadaUsuario,  setJugadaComputadora, setLabel,
     setNumeroDeRonda,setGanadorRonda,
     setPuntajeComputadora, setPuntajeUsuario, setEmpates}) {
 
@@ -44,6 +44,9 @@ function Juego({nombre, setMensajeNombreError, setMensajeOpcionError, setMostrar
         } else {
             setMensajeNombreError(false);
             auxiliarNombreError = false;
+            setSaludar(true);
+            setLabel(false);
+            setInput(false);
         }
     };
 
@@ -84,33 +87,33 @@ function Juego({nombre, setMensajeNombreError, setMensajeOpcionError, setMostrar
             case "piedra":
                 switch (obtuveJugadaComputadora) {
                     case "piedra":
-                        return "Empate";
+                        return "El resultado de la ronda fue empate";
                     case "papel":
-                        return "Gana la computadora";
+                        return "Ronda ganada por la computadora";
                     case "tijera":
-                        return "Gana " + nombre;
+                        return "Ronda ganada por " + nombre;
                     default:
                         return "default case jugadaUsuario piedra";
                 }
             case "papel":
                 switch (obtuveJugadaComputadora) {
                     case "piedra":
-                        return "Gana " + nombre;
+                        return "Ronda ganada por " + nombre;
                     case "papel":
-                        return "Empate";
+                        return "El resultado de la ronda fue empate";
                     case "tijera":
-                        return "Gana la computadora";
+                        return "Ronda ganada por la computadora";
                     default:
                         return "default case jugadaUsuario papel";
                 }
             case "tijera":
                 switch (obtuveJugadaComputadora) {
                     case "piedra":
-                         return "Gana la computadora";
+                         return "Ronda ganada por la computadora";
                     case "papel":
-                        return "Gana " + nombre;
+                        return "Ronda ganada por " + nombre;
                     case "tijera":
-                        return "Empate"; 
+                        return "El resultado de la ronda fue empate"; 
                     default:
                         return "default case jugadaUsuario tijera";
                 }
@@ -122,13 +125,13 @@ function Juego({nombre, setMensajeNombreError, setMensajeOpcionError, setMostrar
     // Función que suma los puntajes de los jugadores, actualizando los estados de los mismos
     const SumaPuntajes = (resultado) => {
         switch (resultado) {
-            case "Gana la computadora":
+            case "Ronda ganada por la computadora":
                 setPuntajeComputadora(prevPuntajeComputadora => prevPuntajeComputadora += 1);
                 break;
-            case "Gana " + nombre:
+            case "Ronda ganada por " + nombre:
                 setPuntajeUsuario(prevPuntajeUsuario => prevPuntajeUsuario + 1);
                 break;
-            case "Empate":
+            case "El resultado de la ronda fue empate":
                 setEmpates(prevEmpates => prevEmpates += 1);
                 break;
             default:

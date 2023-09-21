@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function Resultado({ nombre, puntajeComputadora, puntajeUsuario, numeroDeRonda, setBotonJugar }) {
+function Resultado({ nombre, puntajeComputadora, puntajeUsuario, numeroDeRonda, setBotonJugar, setImagen1, setImagen2 }) {
   
   // establezco las variables ganadorFinal y CuadroResultadoFinal con su estado inicial
   const [ganadorFinal, setGanadorFinal] = useState(null);
@@ -19,20 +19,24 @@ function Resultado({ nombre, puntajeComputadora, puntajeUsuario, numeroDeRonda, 
         setCuadroResultadoFinal(true);
         // en el caso de se obtenga un ganador final saco el botón jugar
         setBotonJugar(false);
+        setImagen2(true);
         console.log("gana la compu");
       } else if (puntajeUsuario > puntajeComputadora) {
         setGanadorFinal("Gana " + nombre);
         setCuadroResultadoFinal(true);
         setBotonJugar(false);
+        setImagen1(true);
         console.log("gana el usuario");
       } else {
         setGanadorFinal("Empate");
         setCuadroResultadoFinal(true);
         setBotonJugar(false);
+        setImagen1(true);
+        setImagen2(true);
         console.log("empate");
       }
     }
-  }, [nombre, puntajeComputadora, puntajeUsuario, numeroDeRonda, setBotonJugar]);
+  }, [nombre, puntajeComputadora, puntajeUsuario, numeroDeRonda, setBotonJugar, setImagen1, setImagen2]);
 
   return (
     <>

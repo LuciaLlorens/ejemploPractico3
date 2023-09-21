@@ -3,21 +3,27 @@ import Papel from '../img/Papel.jpg';
 import Piedra from '../img/Piedra.jpg';
 import Tijera1 from '../img/Tijera1.jpg';
 
-function Jugadas({jugadaUsuario, setJugadaUsuario, mensajeOpcionError }) {
+function Jugadas({jugadaUsuario, setJugadaUsuario, mensajeOpcionError, setOpcionSeleccionada, opcionSeleccionada }) {
 
-  // En el caso de que se seleccione el botón piedra, papel o tijera se cambia el estado de jugadaUsuario
+  // Estado para la opción seleccionada
+  
+
+  // En el caso de que se seleccione el botón piedra, papel o tijera se cambia el estado de jugadaUsuario y opcionSeleccionada
   const CambioPiedra = (e) => { 
     setJugadaUsuario("piedra");
+    setOpcionSeleccionada("piedra");
     console.log("piedra");
     };
 
     const CambioPapel = (e) => {
       setJugadaUsuario("papel");
+      setOpcionSeleccionada("papel");
       console.log("papel");
     };
 
     const CambioTijera = (e) => {
       setJugadaUsuario("tijera");
+      setOpcionSeleccionada("tijera");
       console.log("tijera");
     };
 
@@ -30,7 +36,8 @@ function Jugadas({jugadaUsuario, setJugadaUsuario, mensajeOpcionError }) {
                   type="button"
                   value={jugadaUsuario}
                   id="piedra"
-                  className="botónOpción"
+                  // Se agrega la clase opciónSeleccionada con estilo en CSS a botónOpción si es "piedra"
+                  className={`botónOpción ${opcionSeleccionada === "piedra" ? "opciónSeleccionada" : ""}`}
                   style={{ cursor: "pointer" }}
                   onClick={CambioPiedra}
                 >
@@ -41,7 +48,8 @@ function Jugadas({jugadaUsuario, setJugadaUsuario, mensajeOpcionError }) {
                   type="button"
                   value={jugadaUsuario}
                   id="papel"
-                  className="botónOpción"
+                  // Se agrega la clase opciónSeleccionada con estilo en CSS a botónOpción si es "papel"
+                  className={`botónOpción ${opcionSeleccionada === "papel" ? "opciónSeleccionada" : ""}`}
                   style={{ cursor: "pointer" }}
                   onClick={CambioPapel}
                 >
@@ -52,7 +60,8 @@ function Jugadas({jugadaUsuario, setJugadaUsuario, mensajeOpcionError }) {
                   type="button"
                   value={jugadaUsuario}
                   id="tijera"
-                  className="botónOpción"
+                  // Se agrega la clase opciónSeleccionada con estilo en CSS a botónOpción si es "tijera"
+                  className={`botónOpción ${opcionSeleccionada === "tijera" ? "opciónSeleccionada" : ""}`}
                   style={{ cursor: "pointer" }}
                   onClick={CambioTijera}
                 >

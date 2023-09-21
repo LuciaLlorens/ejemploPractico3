@@ -1,6 +1,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #390099;
+  background-image: url("img/background3.jpg");;
   min-height: 100vh;
   /* Pongo los elementos centrados*/
   display: flex;
@@ -85,6 +86,21 @@ input::placeholder {
   font-size: 15px;
 }
 
+.Saludo {
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 150px;
+  margin-right: 150px;
+  font-size: 25px;
+  color: #fff;
+  font-weight: bold;
+  background: #cf0057;
+  border-radius: 5px;
+  justify-content: center;
+  display: flex;
+}
+
 /*Modificamos el cuadro en el que ponemos las opciones*/
 .opciones {
   text-align: center;
@@ -165,6 +181,7 @@ input::placeholder {
   border-radius: 5px;
   font-size: 17px;
   transition: box-shadow 0.4s ease;
+  z-index: 999; 
 }
 
 #botónReiniciar:hover {
@@ -182,6 +199,7 @@ input::placeholder {
   background-color: #FFBD00;
   border: 6px solid #6C0079;
   border-radius: 20px;
+  width: 383.625px; /*Ancho específico medido con el caso en el que gana la computadora */
   transition: box-shadow 0.4s ease;
 }
 
@@ -208,7 +226,7 @@ input::placeholder {
 }
 
 /* Estilo del cuadro que muestra quién ganó la ronda */
-#resultadoRonda {
+.ganadorComputadora {
   font-size: 20px;
   font-weight: bold;
   color: #fff;
@@ -216,9 +234,43 @@ input::placeholder {
   padding: 10px;
   margin: 10px;
   transition: box-shadow 0.4s ease;
+  background-color: #FF5400;
+  border: 3px solid #FF2A2A;
 }
 
-#resultadoRonda:hover {
+.ganadorComputadora:hover {
+  box-shadow: 0 0 1.5rem #000;
+}
+
+.ganadorUsuario {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  transition: box-shadow 0.4s ease;
+  background-color: #FF0054;
+  border: 3px solid #CF0057;
+}
+
+.ganadorUsuario:hover {
+  box-shadow: 0 0 1.5rem #000;
+}
+
+.empate {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  transition: box-shadow 0.4s ease;
+  background-color: #6C0079;
+  border: 3px solid #390099;
+}
+
+.empate:hover {
   box-shadow: 0 0 1.5rem #000;
 }
 
@@ -280,6 +332,7 @@ input::placeholder {
 
 /* Cuadro en el que se muestra el resultado final*/
 #resultadoFinal_ {
+  position: relative;
   margin: 10px 0;
   padding: 0px;
   background: #390099;
@@ -287,6 +340,7 @@ input::placeholder {
   color: #fff;
   border: 6px solid #000;
   transition: box-shadow 0.4s ease;
+  z-index: 999; 
 }
 
 #resultadoFinal_:hover {
@@ -314,7 +368,6 @@ input::placeholder {
 
 /*Estilos de imágenes finales*/
 #img1 {
-  display:none;
   position: fixed;
   left: 0; /*Que se pegue al borde izquierdo*/
   opacity: 0.9;
@@ -322,7 +375,6 @@ input::placeholder {
 }
 
 #img2 {
-  display: none;
   position: fixed;
   right: 0; /*Que se pegue al borde derecho*/
   opacity: 0.8;
@@ -358,4 +410,14 @@ pero las imagenes directamente se borraban. No lo pude solucionar. Así que opt�
   border-radius: 0;
   color: red;
   box-shadow: 0 0 1rem #000;
+}
+
+.mute-button {
+  position: fixed;
+  top: 10px; /* Ajusta la posición vertical según sea necesario */
+  right: 10px; /* Ajusta la posición horizontal según sea necesario */
+  cursor: pointer;
+  font-size: 24px; /* Ajusta el tamaño del icono según sea necesario */
+  color: #333; /* Cambia el color del icono según sea necesario */
+  z-index: 9999; /* Ajusta el índice z para que esté encima de otros elementos */
 }

@@ -1,7 +1,7 @@
 import React from 'react';
-import { useState } from 'react';
-import { useRef } from 'react';
+import { useState, useRef } from 'react';
 import './App.css';
+// Importo las imagenes finales
 import SarahConnor from './img/SarahConnor.png';
 import Terminator1 from './img/Terminator1.png';
 // importo los componentes hijos
@@ -14,12 +14,14 @@ import Reinicio from './componentes/Reinicio';
 
 
 function App() {
-  // defino las variables locales que voy a necesitar usar entre los hijos con sus estados iniciales.
+  // defino las variables que voy a necesitar usar entre los componentes hijos con sus estados iniciales.
   const [jugadaUsuario, setJugadaUsuario] = useState(null);
   const [jugadaComputadora, setJugadaComputadora] = useState(null);
   const [mostrarInterfaz, setMostrarInterfaz] = useState(false);
   const [nombre, setNombreJugador] = useState(null);
   const [saludo, setSaludar] = useState(false);
+  const [label, setLabel] = useState(true);
+  const [input, setinput] = useState(true);
   const [mensajeNombreError, setMensajeNombreError] = useState(false);
   const [ganadorRonda, setGanadorRonda] = useState(null);
   const [puntajeUsuario, setPuntajeUsuario] = useState(0);
@@ -29,25 +31,25 @@ function App() {
   const [mensajeOpcionError, setMensajeOpcionError] = useState(false);
   const [botonJugar, setBotonJugar] = useState(true);
   const inputRef = useRef(null);
+  const [imagen1, setImagen1] = useState(false);
+  const [imagen2, setImagen2] = useState(false);
+  const [opcionSeleccionada, setOpcionSeleccionada] = useState(null);
 
   // actualizo el nombre del jugador con lo ingresado en el input y saludo
   const CambiarNombre = (e) => {
     setNombreJugador(e.target.value);
-    if (nombre === null) {
-      setSaludar(false);
-    } else if (nombre !== null) {
-        setSaludar(true);
-    }
   };
 
   return (
     <>
       <header>
         <div className="juego">
-          {/* Imagen de la izquierda, aparece con el resultado final */}
+          {imagen1 && (
+          // Imagen de la izquierda, aparece con el resultado final
           <div className="img" id="img1">
             <img src={SarahConnor} alt="Sarah Connor" />
           </div>
+          )}
 
           <div className="panelDeControl" id="panelDeControl">
             <div className="base">
@@ -58,14 +60,14 @@ function App() {
             {/*Espacio para ingresar el nombre del usuario, saludar y obtener el mensaje de error*/}
             <div>
               <ObtencionNombre nombre={nombre} saludo={saludo} mensajeNombreError={mensajeNombreError} 
-              onChange={CambiarNombre} inputRef={inputRef}
+              onChange={CambiarNombre} inputRef={inputRef} input={input} label={label} 
               />
             </div>
 
             {/*Espacio para los botones de opciones piedra, papel o tijera*/}
             <div>
               <Jugadas jugadaUsuario={jugadaUsuario} setJugadaUsuario={setJugadaUsuario} 
-              mensajeOpcionError={mensajeOpcionError}
+              mensajeOpcionError={mensajeOpcionError} opcionSeleccionada={opcionSeleccionada} setOpcionSeleccionada={setOpcionSeleccionada}  
                 
               />
             </div>
@@ -74,9 +76,9 @@ function App() {
               {/*Botón que al ser presionado ejecuta la función handleJugarClick en el componente Juego y muestra el cuadro con la información de rondas*/}
               {botonJugar && (
                 <Juego nombre={nombre} setMensajeNombreError={setMensajeNombreError} setMensajeOpcionError={setMensajeOpcionError} setMostrarInterfaz={setMostrarInterfaz} botonJugar={botonJugar}
-                jugadaUsuario={jugadaUsuario} setJugadaComputadora={setJugadaComputadora}
-                setNumeroDeRonda={setNumeroDeRonda} setGanadorRonda={setGanadorRonda}
-                setPuntajeComputadora={setPuntajeComputadora} setPuntajeUsuario={setPuntajeUsuario} setEmpates={setEmpates}
+                setSaludar={setSaludar} jugadaUsuario={jugadaUsuario} setJugadaComputadora={setJugadaComputadora}
+                setNumeroDeRonda={setNumeroDeRonda} setGanadorRonda={setGanadorRonda} setInput={setinput}
+                setPuntajeComputadora={setPuntajeComputadora} setPuntajeUsuario={setPuntajeUsuario} setEmpates={setEmpates} setLabel={setLabel} 
               />
               )}
             </div>
@@ -85,10 +87,11 @@ function App() {
               {/*Botón que al ser presionado ejecuta la función Reinicio*/}
               <Reinicio setMostrarInterfaz={setMostrarInterfaz} setBotonJugar={setBotonJugar} 
               setJugadaUsuario={setJugadaUsuario} setJugadaComputadora={setJugadaComputadora}
-              setNombreJugador={setNombreJugador} setSaludar={setSaludar} inputRef={inputRef}
+              setNombreJugador={setNombreJugador} setSaludar={setSaludar} setInput={setinput} setLabel={setLabel} 
               setMensajeNombreError={setMensajeNombreError} setMensajeOpcionError={setMensajeOpcionError}
               setEmpates={setEmpates} setGanadorRonda={setGanadorRonda} setNumeroDeRonda={setNumeroDeRonda}
               setPuntajeUsuario={setPuntajeUsuario} setPuntajeComputadora={setPuntajeComputadora}
+              setImagen1={setImagen1} setImagen2={setImagen2} setOpcionSeleccionada={setOpcionSeleccionada} 
               />
             </div>
           </div>
@@ -100,7 +103,12 @@ function App() {
                 <p id="numeroDeRonda"> Ronda N° {numeroDeRonda}</p>
                 <p>{nombre} eligió {jugadaUsuario}</p>
                 <p>La computadora eligió {jugadaComputadora}</p>
-                <p id="resultadoRonda"> {ganadorRonda} </p>
+                {/*Agrego diferentes clases con diferentes estilos en el caso de que ganadorRonda sea empate, la computadora o el usuario*/}
+                <p id="resultadoRonda" className={ganadorRonda === "Ronda ganada por la computadora" ? "ganadorComputadora" : 
+                ganadorRonda === "Ronda ganada por " + nombre ? "ganadorUsuario" : 
+                ganadorRonda === "El resultado de la ronda fue empate" ? "empate" : ""}> 
+                {ganadorRonda} 
+                </p>
               </div>
               {/*Espacio para el conteo de los puntajes generales*/}
               <Marcador nombre={nombre} puntajeComputadora={puntajeComputadora} puntajeUsuario={puntajeUsuario} empates={empates}/>
@@ -108,14 +116,17 @@ function App() {
               <Resultado nombre={nombre} puntajeComputadora={puntajeComputadora} 
               puntajeUsuario={puntajeUsuario} numeroDeRonda={numeroDeRonda} 
               setBotonJugar={setBotonJugar} botonJugar={botonJugar}
+              setImagen1={setImagen1} setImagen2={setImagen2}
               />
             </div>
           )}
           
-          {/* Imagen de la derecha, que aparece con el resultado final */}
-          <div className="img" id="img2">
-            <img src={Terminator1} alt="Terminator" />
-          </div>
+          {imagen2 && (
+            // Imagen de la derecha, que aparece con el resultado final
+            <div className="img" id="img2">
+              <img src={Terminator1} alt="Terminator" />
+            </div>
+          )}
         </div>
       </header>
     </>
