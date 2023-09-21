@@ -4,6 +4,7 @@ import './App.css';
 // Importo las imagenes finales
 import SarahConnor from './img/SarahConnor.png';
 import Terminator1 from './img/Terminator1.png';
+import terminatorAudio from './audio/terminatorAudio.mp3';
 // importo los componentes hijos
 import ObtencionNombre from './componentes/ObtencionNombre.jsx';
 import Jugadas from './componentes/Jugadas.jsx';
@@ -11,6 +12,7 @@ import Juego from './componentes/Juego.jsx';
 import {Marcador} from './componentes/Marcador.jsx';
 import Resultado from './componentes/Resultado.jsx';
 import Reinicio from './componentes/Reinicio';
+
 
 
 function App() {
@@ -34,16 +36,48 @@ function App() {
   const [imagen1, setImagen1] = useState(false);
   const [imagen2, setImagen2] = useState(false);
   const [opcionSeleccionada, setOpcionSeleccionada] = useState(null);
+  const [saludoTerminator, setSaludoTerminator] = useState(false);
+  const [saludoUsuario, setSaludoUsuario] = useState(false);
+  const [juego, setJuego] = useState(false);
+  const [paginaInicial, setPaginaInicial] = useState(true);
+  const [audioTerminator, setAudioTerminator] = useState(false);
+  const [mute, setMute] = useState(false);
 
   // actualizo el nombre del jugador con lo ingresado en el input y saludo
   const CambiarNombre = (e) => {
     setNombreJugador(e.target.value);
   };
 
+  const ActivarJuego = () => {
+    setJuego(true);
+    setPaginaInicial(false);
+    setAudioTerminator(true);
+    }
+  
+  const Mute = () => {
+    setMute(!mute);
+    }
+
   return (
     <>
       <header>
+      {paginaInicial && (
+        <div>
+          <h1 data-testid="tituloJuego">Piedra, Papel o Tijera</h1>
+          <button type="button" id="botónComenzar" onClick={ActivarJuego}> Comenzar </button>
+        </div>
+      )}
+      {juego && (
         <div className="juego">
+          {audioTerminator && (
+            <div className="ContenedorAudio">
+              <button type="button" id="botónMute" onClick={Mute}> {mute ? 'Activar Sonido' : 'Silenciar'} </button>
+              <audio autoPlay volume={0} loop muted={mute} >
+                <source src={terminatorAudio} type="audio/mpeg" />
+              </audio>
+            </div>
+          )}
+
           {imagen1 && (
           // Imagen de la izquierda, aparece con el resultado final
           <div className="img" id="img1">
@@ -60,7 +94,8 @@ function App() {
             {/*Espacio para ingresar el nombre del usuario, saludar y obtener el mensaje de error*/}
             <div>
               <ObtencionNombre nombre={nombre} saludo={saludo} mensajeNombreError={mensajeNombreError} 
-              onChange={CambiarNombre} inputRef={inputRef} input={input} label={label} 
+              onChange={CambiarNombre} inputRef={inputRef} input={input} label={label}
+              saludoTerminator={saludoTerminator} saludoUsuario={saludoUsuario}
               />
             </div>
 
@@ -91,7 +126,8 @@ function App() {
               setMensajeNombreError={setMensajeNombreError} setMensajeOpcionError={setMensajeOpcionError}
               setEmpates={setEmpates} setGanadorRonda={setGanadorRonda} setNumeroDeRonda={setNumeroDeRonda}
               setPuntajeUsuario={setPuntajeUsuario} setPuntajeComputadora={setPuntajeComputadora}
-              setImagen1={setImagen1} setImagen2={setImagen2} setOpcionSeleccionada={setOpcionSeleccionada} 
+              setImagen1={setImagen1} setImagen2={setImagen2} setOpcionSeleccionada={setOpcionSeleccionada}
+              setSaludoTerminator={setSaludoTerminator} setSaludoUsuario={setSaludoUsuario} setMute={setMute}
               />
             </div>
           </div>
@@ -116,7 +152,8 @@ function App() {
               <Resultado nombre={nombre} puntajeComputadora={puntajeComputadora} 
               puntajeUsuario={puntajeUsuario} numeroDeRonda={numeroDeRonda} 
               setBotonJugar={setBotonJugar} botonJugar={botonJugar}
-              setImagen1={setImagen1} setImagen2={setImagen2}
+              setImagen1={setImagen1} setImagen2={setImagen2} 
+              setSaludar={setSaludar} setSaludoTerminator={setSaludoTerminator} setSaludoUsuario={setSaludoUsuario} setMute={setMute}
               />
             </div>
           )}
@@ -128,6 +165,7 @@ function App() {
             </div>
           )}
         </div>
+      )}
       </header>
     </>
   );

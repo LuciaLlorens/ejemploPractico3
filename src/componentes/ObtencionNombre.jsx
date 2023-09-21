@@ -1,6 +1,6 @@
 import '../App.css';
 
-function ObtencionNombre({nombre, saludo, onChange, mensajeNombreError, inputRef, input, label}) {
+function ObtencionNombre({nombre, saludo, onChange, mensajeNombreError, inputRef, input, label, saludoTerminator, saludoUsuario}) {
     return (
         <>
             {(label && 
@@ -30,7 +30,8 @@ function ObtencionNombre({nombre, saludo, onChange, mensajeNombreError, inputRef
             </div>  
             )}
             {/* Saludo oculto, visible en el caso de que se ingrese un nombre*/}
-            {(saludo && <p className='Saludo'>Hola, {nombre}!</p>)} 
+            {(saludo && <p className='Saludo'>Hola, {nombre}!</p>) || (saludoTerminator && <p className='Saludo'>Hasta la vista, baby</p>) || 
+            (saludoUsuario && <p className='Saludo'>I'll be back</p>)} 
         </>
         
     ); 

@@ -1,12 +1,50 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #390099;
-  background-image: url("img/background3.jpg");;
+  background-image: url("img/background3.jpg");
+  background-size: cover;
+  background-position: center center;
   min-height: 100vh;
   /* Pongo los elementos centrados*/
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#botónComenzar {
+  margin: 0 auto 10px;
+  padding: 5px 60px;
+  display: flex;
+  background-color: #cf0057;
+  border: 4px solid #9e0059;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 25px;
+  transition: box-shadow 0.4s ease;
+}
+
+#botónComenzar:hover {
+  box-shadow: 0 0 1rem #9e0059;
+  padding: 10px 70px;
+  cursor: pointer;
+}
+
+.ContenedorAudio {
+  position: fixed; /* Establece la posición fija */
+  top: 0; /* Coloca el contenedor en la parte superior */
+  left: 0; /* Coloca el contenedor en la parte izquierda */
+  padding: 10px; /* Espacio alrededor del botón */
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para mayor visibilidad */
+  z-index: 999; /* Z-index para que esté por encima de otros elementos */
+}
+
+/* Estilo para el botón Mute */
+#botónMute {
+  background-color: #333; /* Color de fondo del botón */
+  color: white; /* Color del texto del botón */
+  border: none; /* Sin bordes */
+  padding: 5px 10px; /* Relleno del botón */
+  cursor: pointer; /* Cambiar el cursor al pasar sobre él */
 }
 
 /*No me queda claro por qué, pero cuando pongo que sea flex acá me quedan alineados los cuadros panelDeControl y empezamosElJuego */

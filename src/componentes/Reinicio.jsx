@@ -1,9 +1,9 @@
 import "../App.css";
 
 function Reinicio({setMostrarInterfaz, setBotonJugar,setJugadaUsuario, setJugadaComputadora, 
-    setNombreJugador,setMensajeNombreError, setSaludar, setMensajeOpcionError,
+    setNombreJugador,setMensajeNombreError, setSaludar, setMensajeOpcionError, setSaludoTerminator, setSaludoUsuario,
     setEmpates, setGanadorRonda, setNumeroDeRonda, setPuntajeUsuario, setPuntajeComputadora,
-    setImagen1, setImagen2, setInput, setLabel, setOpcionSeleccionada}) {
+    setImagen1, setImagen2, setInput, setLabel, setOpcionSeleccionada, setMute}) {
     
     // función que se ejecuta al apretar el botón Reiniciar
     const handleReinicioClick = () => {
@@ -15,6 +15,8 @@ function Reinicio({setMostrarInterfaz, setBotonJugar,setJugadaUsuario, setJugada
         // Vuelvo al estado anterior de nombre y elimino el contenido del input.
         setNombreJugador(null);
         setSaludar(false);
+        setSaludoTerminator(false);
+        setSaludoUsuario(false);
         // saco los mensajes de error si los hubiera
         setMensajeNombreError(false);
         setMensajeOpcionError(false);
@@ -34,6 +36,7 @@ function Reinicio({setMostrarInterfaz, setBotonJugar,setJugadaUsuario, setJugada
         setLabel(true);
         // vuelvo a null opcionSeleccionada
         setOpcionSeleccionada(null);
+        setMute(false);
     }
     
     return (

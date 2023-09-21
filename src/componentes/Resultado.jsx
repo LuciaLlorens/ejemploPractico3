@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import hastaLaVista from '../audio/hastaLaVista.mp3';
+import volvere1 from '../audio/volvere1.mp3';
 
-function Resultado({ nombre, puntajeComputadora, puntajeUsuario, numeroDeRonda, setBotonJugar, setImagen1, setImagen2 }) {
+function Resultado({ nombre, puntajeComputadora, puntajeUsuario, numeroDeRonda, setBotonJugar, setImagen1, setImagen2, 
+  setSaludar, setSaludoTerminator, setSaludoUsuario, setMute }) {
   
   // establezco las variables ganadorFinal y CuadroResultadoFinal con su estado inicial
   const [ganadorFinal, setGanadorFinal] = useState(null);
   const [CuadroResultadoFinal, setCuadroResultadoFinal] = useState(false);
+  const [audioCompu, setAudioCompu] = useState(false);
+  const [audioUsuario, setAudioUsuario] = useState(false);
 
   // Establezco que en el caso de una serie de condiciones se obtenga el ganador final del juego
   useEffect(() => {
@@ -20,12 +25,20 @@ function Resultado({ nombre, puntajeComputadora, puntajeUsuario, numeroDeRonda, 
         // en el caso de se obtenga un ganador final saco el botón jugar
         setBotonJugar(false);
         setImagen2(true);
+        setSaludar(false);
+        setSaludoTerminator(true);
+        setMute(true);
+        setAudioCompu(true);
         console.log("gana la compu");
       } else if (puntajeUsuario > puntajeComputadora) {
         setGanadorFinal("Gana " + nombre);
         setCuadroResultadoFinal(true);
         setBotonJugar(false);
         setImagen1(true);
+        setSaludar(false);
+        setSaludoUsuario(true);
+        setMute(true);
+        setAudioUsuario(true);
         console.log("gana el usuario");
       } else {
         setGanadorFinal("Empate");
@@ -33,18 +46,33 @@ function Resultado({ nombre, puntajeComputadora, puntajeUsuario, numeroDeRonda, 
         setBotonJugar(false);
         setImagen1(true);
         setImagen2(true);
+        setSaludar(false);
+        setSaludoUsuario(true);
+        setMute(true);
+        setAudioUsuario(true);
         console.log("empate");
       }
     }
-  }, [nombre, puntajeComputadora, puntajeUsuario, numeroDeRonda, setBotonJugar, setImagen1, setImagen2]);
+  }, [nombre, puntajeComputadora, puntajeUsuario, numeroDeRonda, setBotonJugar, setImagen1, setImagen2, setSaludar, setSaludoTerminator, setSaludoUsuario, setAudioCompu, setAudioUsuario, setMute]);
 
   return (
     <>
-    {CuadroResultadoFinal && (
+      {audioCompu && (
+            <audio autoPlay volume={1.0}> {/* Ajustar el volumen a 0.5 (50%) */}
+              <source src={hastaLaVista} type="audio/mpeg" />
+            </audio>
+          )}
+      {audioUsuario && (
+            <audio autoPlay volume={1.0}> {/* Ajustar el volumen a 0.5 (50%) */} 
+              <source src={volvere1} type="audio/mpeg" />
+            </audio>
+          )}
+      {CuadroResultadoFinal && (
         <div className="resultadoFinal" id="resultadoFinal_">
             <p id="títuloResultadoFinal">Resultado final:</p>
             <p id="resultadoFinal">{ganadorFinal}</p>
         </div>
+        
     )};
     </>
   );
