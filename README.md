@@ -24,10 +24,16 @@ Se realizaron repetidas pruebas para revisar el correcto funcionamiento de la p�
 Al segundo problema lo solucioné creando estados "globales" en el componente padre, los cuales luego los hijos podían usar e iban modificando (props, algo que me costó un tiempo entender cómo hacer). Al primer problema terminé solucionándolo a partir de crear constantes locales en los componentes hijos y definiendo sus estados con las globales:
 por ej:
 * en componente padre:
+
+---
 const [nombre, setNombreJugador] = useState(null);
+
 que luego se actualizaba con lo ingresado en el input, pero no se encontraba actualizado al llamarlo en el resultado de la ronda que se encontraba en una función del componente Juego.
+
 Por lo que
 * en componente hijo Juego:
+
+---
 const [nombreLocal, setNombreLocal] = useState(nombre);
 useEffect(() => {
         setNombreLocal(nombre);
@@ -46,8 +52,12 @@ const handleJugarClick = () => {
             aumentoNumeroRondas();
         }
       };
+
+
 De esta forma "forzaba" su actualización para hacer funcionar las funciones que necesitaban los estados actualizados; en este caso ResultadoJuego().
 Otra forma, en el caso de problemas con la actualización de datos y visualización de los mensajes de error, fue crear variables locales que fueran iguales a las globales:
+
+---
 let auxiliarNombreError = false;
 const MostrarMensajeNombreError = () => {
         if (nombreLocal === null) {
@@ -61,6 +71,8 @@ const MostrarMensajeNombreError = () => {
             setInput(false);
         }
     };
+
+
 Tras estas correcciones afortunadamente el juego en términos de su lógica comenzó a funcionar correctamente y a dejar de tirar casos default (algo que sucedía continuamente en la primera ronda de ResultadoJuego()).
 
 Posteriormente, cuando quise realizar mejoras en la visualización del proyecto, tuve algunos problemas con la posibilidad de ponerle música de fondo a la página. 
