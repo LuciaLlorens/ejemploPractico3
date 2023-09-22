@@ -10,16 +10,6 @@ function Juego({nombre, setMensajeNombreError, setMensajeOpcionError, setMostrar
     const [nombreLocal, setNombreLocal] = useState(nombre);
     const [jugadaUsuarioLocal, setJugadaUsuarioLocal] = useState(null);
       
-    // Observar cambios en 'nombre' y actualizar 'nombreLocal'
-    useEffect(() => {
-        setNombreLocal(nombre);
-    }, [nombre]);
-      
-    // Observar cambios en 'jugadaUsuario' y actualizar 'jugadaUsuarioLocal'
-    useEffect(() => {
-        setJugadaUsuarioLocal(jugadaUsuario);
-    }, [jugadaUsuario]);
-      
     // Me permite ver los cambios en "nombre" y actualizar "nombreLocal"
     useEffect(() => {
         setNombreLocal(nombre);

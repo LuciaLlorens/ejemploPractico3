@@ -36,6 +36,7 @@ function Reinicio({setMostrarInterfaz, setBotonJugar,setJugadaUsuario, setJugada
         setLabel(true);
         // vuelvo a null opcionSeleccionada
         setOpcionSeleccionada(null);
+        // quito el silenciado de la música de fondo
         setMute(false);
     }
     

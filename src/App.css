@@ -16,16 +16,17 @@ body {
   margin: 0 auto 10px;
   padding: 5px 60px;
   display: flex;
-  background-color: #cf0057;
-  border: 4px solid #9e0059;
-  color: #fff;
+  background-color: #4CC9F0;
+  border: 4px solid #4361EE;
+  color: #000;
   border-radius: 5px;
   font-size: 25px;
+  font-weight: bold;
   transition: box-shadow 0.4s ease;
 }
 
 #botónComenzar:hover {
-  box-shadow: 0 0 1rem #9e0059;
+  box-shadow: 0 0 2rem #FFBD00;
   padding: 10px 70px;
   cursor: pointer;
 }
@@ -41,30 +42,36 @@ body {
   padding: 5px;
   text-align: center;
   color: #fff;
-  background-color: #390099;
-  border: 6px solid #6c0079;
+  background-color: #2C376C;
+  border: 6px solid #F74CDE;
+  font-weight: bold;
   border-radius: 20px;
+  box-shadow: #000
 }
 
+.tituloJuego:hover {
+  box-shadow: 0 0 1rem #F74CDE;
+}
+
+/*estilo para el contenedor de audio*/
 .ContenedorAudio {
-  position: fixed; /* Establece la posición fija */
-  top: 0; /* Coloca el contenedor en la parte superior */
-  left: 0; /* Coloca el contenedor en la parte izquierda */
-  padding: 10px; /* Espacio alrededor del botón */
+  position: fixed;
+  top: 0; 
+  left: 0; 
+  padding: 10px; 
   background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para mayor visibilidad */
   z-index: 999; /* Z-index para que esté por encima de otros elementos */
 }
 
 /* Estilo para el botón Mute */
 #botónMute {
-  background-color: #333; /* Color de fondo del botón */
-  color: white; /* Color del texto del botón */
-  border: none; /* Sin bordes */
-  padding: 5px 10px; /* Relleno del botón */
-  cursor: pointer; /* Cambiar el cursor al pasar sobre él */
+  background-color: #333;
+  color: white; 
+  border: none; 
+  padding: 5px 10px; 
+  cursor: pointer;
 }
 
-/*No me queda claro por qué, pero cuando pongo que sea flex acá me quedan alineados los cuadros panelDeControl y empezamosElJuego */
 .juego {
   display: flex;
 }
@@ -72,8 +79,8 @@ body {
 /*Modifica lo que sería el primer cuadro. Sin las rondas, el resultado, ni los puntajes*/
 .panelDeControl {
   padding: 10px;
-  background: #FFBD00;
-  border: 6px solid #6c0079;
+  background: #435977;
+  border: 6px solid #A04168;
   border-radius: 20px;
   width: fit-content;
   margin-right: 5px; /* Para que haya espacio con empezamosElJuego*/
@@ -89,9 +96,9 @@ h1 {
   margin: 10px;
   padding: 5px;
   text-align: center;
-  color: #000;
-  background-color: #FFBD00;
-  border: 6px solid #390099;
+  color: #fff;
+  background-color: #435977;
+  border: 6px solid #B5649F;
   border-radius: 20px;
 }
 
@@ -100,7 +107,7 @@ h1 {
   text-align: center;
   margin: 0;
   padding: 5px;
-  background: #9e0059;
+  background: #B5179E;
   color: #fff;
   border-radius: 5px;
   font-size: 25px;
@@ -116,7 +123,7 @@ h1 {
   height: 20px;
   margin: 5px; 
   padding: 10px;
-  background: #cf0057;
+  background: #F72585;
   display: flex;
   justify-content: center;
   border-radius: 5px;
@@ -141,6 +148,7 @@ input::placeholder {
   font-size: 15px;
 }
 
+/* Así se ve el saludo cuando desaparece el input */
 .Saludo {
   padding: 10px;
   margin-top: 5px;
@@ -161,10 +169,10 @@ input::placeholder {
   text-align: center;
   margin: 10px;
   padding: 10px;
-  border: 6px solid #ff8900;
+  border: 6px solid #922FE4;
   border-radius: 7px;
   font-size: 30px;
-  background-color: #ffa300;
+  background-color: #5F3CBF;
   transition: box-shadow 0.4s ease;
 }
 
@@ -195,14 +203,14 @@ input::placeholder {
 .botónOpción:hover {
   opacity: 1;
   cursor: pointer;
-  box-shadow: 0 0 1rem #9e0059;
+  box-shadow: 0 0 1rem #F74CDE;
 }
 
 /* Una clase creada en JS, qué sucede cuando se selecciona una de las imagenes */
 .opciónSeleccionada {
   opacity: 1;
   border-radius: 100px;
-  border: 5px solid #ff0054;
+  border: 5px solid #F74CDE;
   margin: 10px;
 }
 
@@ -211,16 +219,17 @@ input::placeholder {
   margin: 0 auto 10px;
   padding: 5px 60px;
   display: flex;
-  background-color: #cf0057;
-  border: 4px solid #9e0059;
-  color: #fff;
+  background-color: #4CC9F0;
+  border: 4px solid #4361EE;
+  color: #000;
   border-radius: 5px;
   font-size: 25px;
+  font-weight: bold;
   transition: box-shadow 0.4s ease;
 }
 
 #botónJugar:hover {
-  box-shadow: 0 0 1rem #9e0059;
+  box-shadow: 0 0 1rem #F3A364;
   padding: 10px 70px;
   cursor: pointer;
 }
@@ -230,8 +239,8 @@ input::placeholder {
   margin: 0 auto;
   padding: 5px;
   display: flex;
-  background-color: #6C0079;
-  border: 5px solid #390099;
+  background-color: #4C3082;
+  border: 5px solid #063020;
   color: #fff;
   border-radius: 5px;
   font-size: 17px;
@@ -251,8 +260,8 @@ input::placeholder {
   padding: 10px;
   text-align: center;
   color: #000;
-  background-color: #FFBD00;
-  border: 6px solid #6C0079;
+  background-color: #435977;
+  border: 6px solid #9C3A5D;
   border-radius: 20px;
   width: 383.625px; /*Ancho específico medido con el caso en el que gana la computadora */
   transition: box-shadow 0.4s ease;
@@ -274,10 +283,18 @@ input::placeholder {
   justify-content: center;
 }
 
+#numeroDeRonda:hover {
+  box-shadow: 0 0 1.5rem #000;
+}
+
 /* Datos que se corresponden con la ronda */
 #eleccionJugador,
 #eleccionComputadora {
   font-size: 17px;
+}
+
+.elecciones {
+  color: #fff;
 }
 
 /* Estilo del cuadro que muestra quién ganó la ronda */
@@ -334,9 +351,9 @@ input::placeholder {
   margin: 0px;
   padding: 0px;
   border-radius: 5px;
-  color: #000;
-  border: 6px solid #ff8900;
-  background-color: #ffa300;
+  color: #fff;
+  border: 6px solid #063020;
+  background-color: #1F5853;
   transition: box-shadow 0.4s ease;
 }
 
@@ -353,7 +370,7 @@ input::placeholder {
 /* Título del puntaje del jugador */
 #nombreJugador_ {
   font-weight: bold;
-  background-color: #6C0079;
+  background-color: #2C376C;
   border-radius: 0px;
   color: #fff;
 }
@@ -367,7 +384,7 @@ input::placeholder {
 /* Título de puntaje de la computadora */
 #nombreComputadora {
   font-weight: bold;
-  background-color: #6C0079;
+  background-color: #2C376C;
   border-radius: 0px;
   color: #fff;
 }
@@ -375,14 +392,14 @@ input::placeholder {
 /* Título de empates*/
 #empates {
   font-weight: bold;
-  background-color: #6C0079;
+  background-color: #2C376C;
   border-radius: 0px;
   color: #fff;
 }
 
 /* cantidad de empates */
 #cantidadEmpates {
-  color: #000;
+  color: #fff;
 }
 
 /* Cuadro en el que se muestra el resultado final*/
@@ -436,16 +453,13 @@ input::placeholder {
   z-index: 1; /* Un valor para que esté detrás de #resultadoFinal_ */
 }
 
-/* Quise agregarles a las imagenes una transición cuando aparecieran usando transition: opacity 0.4s ease y configurando el JS,
-pero las imagenes directamente se borraban. No lo pude solucionar. Así que opté por dejar su opacidad y entrada abrupta*/
-
 /* estilo del mensaje de error por no ingresar un nombre */
 #mensajeCampoVacíoNombre {
   margin: 3px;
   padding: 5px;
   justify-content: center;
   background-color: #fff;
-  border: 3px solid red;
+  border: 3px solid #932C47;
   font-weight: bold;
   font-size: 22px;
   border-radius: 0;
@@ -459,20 +473,10 @@ pero las imagenes directamente se borraban. No lo pude solucionar. Así que opt�
   padding: 5px;
   justify-content: center;
   background-color: #fff;
-  border: 3px solid red;
+  border: 3px solid #932C47;
   font-weight: bold;
   font-size: 22px;
   border-radius: 0;
   color: red;
   box-shadow: 0 0 1rem #000;
-}
-
-.mute-button {
-  position: fixed;
-  top: 10px; /* Ajusta la posición vertical según sea necesario */
-  right: 10px; /* Ajusta la posición horizontal según sea necesario */
-  cursor: pointer;
-  font-size: 24px; /* Ajusta el tamaño del icono según sea necesario */
-  color: #333; /* Cambia el color del icono según sea necesario */
-  z-index: 9999; /* Ajusta el índice z para que esté encima de otros elementos */
 }

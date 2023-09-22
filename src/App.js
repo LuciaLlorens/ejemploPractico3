@@ -47,13 +47,15 @@ function App() {
   const CambiarNombre = (e) => {
     setNombreJugador(e.target.value);
   };
-
+  
+  // si aprieta el botón Comenzar aparece la otra pantalla con el juego propiamente dicho, así como se comienza a reproducir la música de fondo
   const ActivarJuego = () => {
     setJuego(true);
     setPaginaInicial(false);
     setAudioTerminator(true);
     }
   
+  // para poder mutear el audio en el caso de que así se quiera
   const Mute = () => {
     setMute(!mute);
     }
@@ -61,6 +63,8 @@ function App() {
   return (
     <>
       <header>
+      {/*Esta es la página de inicio, con las instrucciones de juego y el botón de comenzar; me permite una primera interacción del usuario con la página,
+      algo que posibilita el autoPlay en la "segunda página"*/}
       {paginaInicial && (
         <div>
           <h1 className="tituloJuego" data-testid="tituloJuego">Piedra, Papel o Tijera</h1>
@@ -74,8 +78,11 @@ function App() {
           <button type="button" id="botónComenzar" onClick={ActivarJuego}> Comenzar </button>
         </div>
       )}
+
+      {/*Al apretar comenzar se abre esta nueva página que contiene al juego y la música*/}
       {juego && (
         <div className="juego">
+        {/* Este es el audio que se reproduce automáticamente y en loop; así también se puede mutear con un botón destinado a ello */}
           {audioTerminator && (
             <div className="ContenedorAudio">
               <button type="button" id="botónMute" onClick={Mute}> {mute ? 'Activar Sonido' : 'Silenciar'} </button>
@@ -144,8 +151,8 @@ function App() {
             <div className="empezamosElJuego" id="empezamosElJuego">
               <div className="rondas">
                 <p id="numeroDeRonda"> Ronda N° {numeroDeRonda}</p>
-                <p>{nombre} eligió {jugadaUsuario}</p>
-                <p>La computadora eligió {jugadaComputadora}</p>
+                <p className='elecciones'>{nombre} eligió {jugadaUsuario}</p>
+                <p className='elecciones'>La computadora eligió {jugadaComputadora}</p>
                 {/*Agrego diferentes clases con diferentes estilos en el caso de que ganadorRonda sea empate, la computadora o el usuario*/}
                 <p id="resultadoRonda" className={ganadorRonda === "Ronda ganada por la computadora" ? "ganadorComputadora" : 
                 ganadorRonda === "Ronda ganada por " + nombre ? "ganadorUsuario" : 

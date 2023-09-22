@@ -58,12 +58,12 @@ function Resultado({ nombre, puntajeComputadora, puntajeUsuario, numeroDeRonda, 
   return (
     <>
       {audioCompu && (
-            <audio autoPlay volume={1.0}> {/* Ajustar el volumen a 0.5 (50%) */}
+            <audio autoPlay volume={1.0}>
               <source src={hastaLaVista} type="audio/mpeg" />
             </audio>
           )}
       {audioUsuario && (
-            <audio autoPlay volume={1.0}> {/* Ajustar el volumen a 0.5 (50%) */} 
+            <audio autoPlay volume={1.0}>
               <source src={volvere1} type="audio/mpeg" />
             </audio>
           )}
